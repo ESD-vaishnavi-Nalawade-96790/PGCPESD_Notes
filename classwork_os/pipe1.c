@@ -1,0 +1,26 @@
+#include<stdio.h>
+#include<unistd.h>
+#include<string.h>
+int main(void)
+{
+int arr[2];
+char buf1[64]="god bless you\n",buf2[64];
+int ret=pipe(arr);
+if(ret==-1)
+{
+printf("pipe is failed\n");
+_exit(ret);
+}
+write(arr[1],buf1,64);
+{
+printf("data written in pipe : %s\n",buf1);
+}
+read(arr[0],buf2,64);
+{
+printf("data is read from pipe : %s\n",buf2);
+
+}
+close(arr[0]);
+close(arr[1]);
+return 0;
+}
